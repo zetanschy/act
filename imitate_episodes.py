@@ -34,13 +34,18 @@ def main(args):
     num_epochs = args['num_epochs']
 
     # get task parameters
-    is_sim = task_name[:4] == 'sim_'
-    if is_sim:
-        from constants import SIM_TASK_CONFIGS
-        task_config = SIM_TASK_CONFIGS[task_name]
+    if "i2rt" in task_name:
+        from constants import I2RT_TASK_CONFIGS
+        task_config = I2RT_TASK_CONFIGS[task_name]
+        is_sim = False
     else:
-        from aloha_scripts.constants import TASK_CONFIGS
-        task_config = TASK_CONFIGS[task_name]
+        is_sim = task_name[:4] == 'sim_'
+        if is_sim:
+            from constants import SIM_TASK_CONFIGS
+            task_config = SIM_TASK_CONFIGS[task_name]
+        else:
+            from aloha_scripts.constants import TASK_CONFIGS
+            task_config = TASK_CONFIGS[task_name]
     dataset_dir = task_config['dataset_dir']
     num_episodes = task_config['num_episodes']
     episode_len = task_config['episode_len']
@@ -100,7 +105,15 @@ def main(args):
         print()
         exit()
 
-    train_dataloader, val_dataloader, stats, _ = load_data(dataset_dir, num_episodes, camera_names, batch_size_train, batch_size_val)
+    train_dataloader, val_dataloader, stats, _ = load_data(
+        dataset_dir,
+        num_episodes,
+        camera_names,
+        batch_size_train,
+        batch_size_val,
+        episode_len=episode_len,
+        is_sim_override=is_sim,
+    )
 
     # save dataset stats
     if not os.path.isdir(ckpt_dir):

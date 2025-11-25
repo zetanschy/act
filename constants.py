@@ -1,7 +1,7 @@
 import pathlib
 
 ### Task parameters
-DATA_DIR = '<put your data dir here>'
+DATA_DIR = '/home/zetans/Downloads'
 SIM_TASK_CONFIGS = {
     'sim_transfer_cube_scripted':{
         'dataset_dir': DATA_DIR + '/sim_transfer_cube_scripted',
@@ -29,11 +29,26 @@ SIM_TASK_CONFIGS = {
         'num_episodes': 50,
         'episode_len': 500,
         'camera_names': ['top']
+    }
+}
+
+I2RT_TASK_CONFIGS = {
+    'i2rt_cup_to_plate': {
+        'dataset_dir': '/home/zetans/.cache/huggingface/lerobot/single_cup_to_plate/20251029-212348',
+        'num_episodes': 65,
+        'episode_len': 1000,
+        'camera_names': ['teleop_left', 'teleop_right', 'torso']
+    },
+    'i2rt_cup_to_plate_larger_dataset': {
+        'dataset_dir': '/home/zetans/.cache/huggingface/lerobot/single_cup_to_plate/20251029-172039',
+        'num_episodes': 85,
+        'episode_len': 1000,
+        'camera_names': ['teleop_left', 'teleop_right', 'torso']
     },
 }
 
 ### Simulation envs fixed constants
-DT = 0.02
+DT = 1/30 #0.02
 JOINT_NAMES = ["waist", "shoulder", "elbow", "forearm_roll", "wrist_angle", "wrist_rotate"]
 START_ARM_POSE = [0, -0.96, 1.16, 0, -0.3, 0, 0.02239, -0.02239,  0, -0.96, 1.16, 0, -0.3, 0, 0.02239, -0.02239]
 
