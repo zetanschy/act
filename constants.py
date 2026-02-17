@@ -34,17 +34,11 @@ SIM_TASK_CONFIGS = {
 
 I2RT_TASK_CONFIGS = {
     'i2rt_cup_to_plate': {
-        'dataset_dir': '/home/zetans/.cache/huggingface/lerobot/single_cup_to_plate/20251029-212348',
+        'dataset_dir': 'act_pick_and_place/double_merged',
         'num_episodes': 65,
         'episode_len': 1000,
         'camera_names': ['teleop_left', 'teleop_right', 'torso']
-    },
-    'i2rt_cup_to_plate_larger_dataset': {
-        'dataset_dir': '/home/zetans/.cache/huggingface/lerobot/single_cup_to_plate/20251029-172039',
-        'num_episodes': 85,
-        'episode_len': 1000,
-        'camera_names': ['teleop_left', 'teleop_right', 'torso']
-    },
+    }
 }
 
 ### Simulation envs fixed constants
